@@ -109,5 +109,49 @@ To analyze the internal training stability, we track the accuracy and loss curve
 
 ---
 
-## 7. Conclusion
+---
+
+## 7. Project Evolution, Hyperparameter Tuning, and Technical Foundations
+
+To fully comprehend the training progression and design of this project, this section outlines exactly why we iteratively trained models 3 to 4 times, what was modified in `train.py`, and the essential Deep Learning topics you must know.
+
+### 7.1 Why We Re-Trained Some Models Multiple Times
+During the initial training runs, we encountered two significant challenges:
+1. **The Overfitting Problem**: Models like ResNet50 and InceptionV3 reached 100% training accuracy in just 5 epochs but fell to ~80% validation/test accuracy.
+2. **Convergence Speed Problem**: Smaller architectures like MobileNetV2 were underfitting, scoring below 85% because their learning rates were too low to learn the features within the fixed 30-epoch constraint.
+
+**To resolve these challenges, we modified `train.py` through 3 major iterations:**
+- **Iteration 1**: We unlocked all base layers of the pre-trained networks (Full Fine-tuning) instead of using them as static feature extractors.
+- **Iteration 2**: We introduced a custom **Cosine Annealing LR scheduler** (reducing the rate smoothly) and switched from standard Adam to Adam with **Label Smoothing (0.05 - 0.1)**. This immediately boosted ResNet and MobileNet from ~84% up to ~94%.
+- **Iteration 3**: We increased MobileNet's learning rate to `1e-4` and reduced its dropout to `0.2`. This accelerated the convergence and produced the **95.31%** accuracy. We also redesigned the Custom CNN from a 3-layer to a deep 5-block network.
+
+---
+
+### 7.2 Core Deep Learning Topics You Must Know for a Strong CNN Project
+
+To excel in any CNN-based deep learning project, it is essential to understand the following building blocks:
+
+#### 1. Batch Size
+- **What it is**: The number of training samples processed in one forward and backward pass before updating the model weights.
+- **Why it matters**: A smaller batch size (e.g., 32 or 64) acts as a regularizer because it introduces gradient noise, helping the model escape local minima. Larger batch sizes consume more GPU memory but accelerate compute speeds.
+
+#### 2. Learning Rate (LR) and Scheduling
+- **What it is**: A hyperparameter that controls how much we adjust the network weights with respect to the loss gradient.
+- **Why it matters**: If it is too high, training explodes and becomes unstable. If it is too low, training takes too long or gets trapped. We use **Cosine Annealing Scheduling** to start with a moderately high LR and smoothly decay it towards $1\times10^{-7}$, stabilizing weight updates.
+
+#### 3. Weight Decay
+- **What it is**: An $L_2$ regularization penalty added to the loss function. It prevents weights from growing too large.
+- **Why it matters**: It penalizes complex models and prevents them from over-indexing on training noise, narrowing the accuracy gap.
+
+#### 4. Dropout (Standard and 2D)
+- **What it is**: Randomly setting a percentage of activation units to zero during training.
+- **Why it matters**: It forces the network to learn redundant features rather than relying on a single subset of neurons. In our Custom CNN, we added **Dropout2d**, which drops entire feature maps, preventing co-adaptation of filters.
+
+#### 5. Label Smoothing
+- **What it is**: Modifying the ground-truth targets from hard vectors (e.g., `[1, 0, 0, 0]`) to soft vectors (e.g., `[0.95, 0.016, 0.016, 0.016]`).
+- **Why it matters**: It prevents the model from predicting overly high probabilities, resulting in much better generalization on unseen testing sets.
+
+---
+
+## 8. Conclusion
 In this comprehensive comparative analysis, we evaluated five deep learning architectures on the multi-class brain tumor classification problem. We demonstrated that integrating specialized regularizers like Cosine scheduling, Gaussian data augmentation, and Label Smoothing prevents overfitting. Notably, our findings confirm that lightweight models like **MobileNetV2** perform with stellar diagnostic precision (**95.31%**) and process scans at incredible speeds (**474 FPS**), making them ideal for edge diagnostic applications.
