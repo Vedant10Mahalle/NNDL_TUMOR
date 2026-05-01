@@ -1,0 +1,25 @@
+Model: custom
+Final Train Accuracy:      84.69%
+Best Validation Accuracy:  90.01%
+Testing Accuracy:          83.75%
+Total Epochs:              30
+Average Epoch Time:        12.66 sec
+Total Training Time:       6.34 minutes
+
+--- Model Complexity ---
+Total Parameters:          4,848,548
+Trainable Parameters:      4,848,548
+Model Size on Disk:        18.53 MB
+
+--- Inference Speed ---
+Latency:                   1.35 ms/image
+Throughput:                738.8 FPS
+
+--- Hyperparameters ---
+Learning Rate:             0.0001
+Weight Decay:              0.0001
+Dropout Rate:              0.5
+Batch Size:                32
+Optimizer:                 Adam
+LR Scheduler:              CosineAnnealingLR
+Loss Function:             CrossEntropyLoss (label_smoothing=0.1)

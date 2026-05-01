@@ -1,0 +1,29 @@
+=== SUMMARY COMPARISON (MARKDOWN) ===
+
+| Model Architecture | Test Accuracy | Parameters | Model Size | Latency | Inference Speed (FPS) |
+|---|---|---|---|---|---|
+| **Custom** | 83.75% | 4.85M | 18.53 MB | 1.35 ms | 738.8 FPS |
+| **Efficientnet** | 95.12% | 4.01M | 15.59 MB | 3.20 ms | 312.3 FPS |
+| **Inception** | 94.19% | 25.12M | 96.16 MB | 6.07 ms | 164.7 FPS |
+| **Mobilenet** | 95.31% | 2.23M | 8.74 MB | 2.11 ms | 474.1 FPS |
+| **Resnet** | 92.12% | 23.52M | 90.00 MB | 2.48 ms | 403.9 FPS |
+
+
+=== SUMMARY COMPARISON (LATEX) ===
+
+\begin{table}[h]
+\centering
+\caption{Comparison of Deep Learning Architectures on Brain Tumor Classification}
+\label{tab:model_comparison}
+\begin{tabular}{lccccc}
+\hline
+Model Architecture & Test Accuracy & Parameters & Model Size & Latency & Inference (FPS) \\
+\hline
+Custom & 83.75\% & 4.85M & 18.53 MB & 1.35 ms & 738.8 FPS \\
+Efficientnet & 95.12\% & 4.01M & 15.59 MB & 3.20 ms & 312.3 FPS \\
+Inception & 94.19\% & 25.12M & 96.16 MB & 6.07 ms & 164.7 FPS \\
+Mobilenet & 95.31\% & 2.23M & 8.74 MB & 2.11 ms & 474.1 FPS \\
+Resnet & 92.12\% & 23.52M & 90.00 MB & 2.48 ms & 403.9 FPS \\
+\hline
+\end{tabular}
+\end{table}

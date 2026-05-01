@@ -1,0 +1,25 @@
+Model: inception
+Final Train Accuracy:      98.11%
+Best Validation Accuracy:  98.39%
+Testing Accuracy:          94.19%
+Total Epochs:              30
+Average Epoch Time:        19.74 sec
+Total Training Time:       9.92 minutes
+
+--- Model Complexity ---
+Total Parameters:          25,120,460
+Trainable Parameters:      25,120,460
+Model Size on Disk:        96.16 MB
+
+--- Inference Speed ---
+Latency:                   6.07 ms/image
+Throughput:                164.7 FPS
+
+--- Hyperparameters ---
+Learning Rate:             1e-05
+Weight Decay:              0.0005
+Dropout Rate:              0.5
+Batch Size:                32
+Optimizer:                 Adam
+LR Scheduler:              CosineAnnealingLR
+Loss Function:             CrossEntropyLoss (label_smoothing=0.1)

@@ -1,0 +1,25 @@
+Model: mobilenet
+Final Train Accuracy:      99.08%
+Best Validation Accuracy:  98.99%
+Testing Accuracy:          95.31%
+Total Epochs:              30
+Average Epoch Time:        12.86 sec
+Total Training Time:       6.44 minutes
+
+--- Model Complexity ---
+Total Parameters:          2,228,996
+Trainable Parameters:      2,228,996
+Model Size on Disk:        8.74 MB
+
+--- Inference Speed ---
+Latency:                   2.11 ms/image
+Throughput:                474.1 FPS
+
+--- Hyperparameters ---
+Learning Rate:             0.0001
+Weight Decay:              0.0001
+Dropout Rate:              0.2
+Batch Size:                32
+Optimizer:                 Adam
+LR Scheduler:              CosineAnnealingLR
+Loss Function:             CrossEntropyLoss (label_smoothing=0.1)

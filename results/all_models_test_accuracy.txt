@@ -1,0 +1,9 @@
+# Best Model Testing Accuracy Comparison
+
+| Model Architecture | Exact Test Accuracy | Status |
+|--------------------|---------------------|--------|
+| MobileNetV2        | 95.31%              | Best   |
+| EfficientNet-B0    | 95.12%              |        |
+| InceptionV3        | 94.19%              |        |
+| ResNet50           | 92.12%              |        |
+| Custom CNN         | 84.62%              | Rerunning now with the deep 5-block architecture |

@@ -1,0 +1,23 @@
+# Python / PyTorch
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Large Model Weights & Data
+models/
+*.pth
+*.pt
+*.onnx
+data/
+*.zip
+*.tar
+*.gz
+
+# Local OS
+.DS_Store
+Thumbs.db

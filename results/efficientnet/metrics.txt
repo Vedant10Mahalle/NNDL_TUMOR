@@ -1,0 +1,25 @@
+Model: efficientnet
+Final Train Accuracy:      98.75%
+Best Validation Accuracy:  98.51%
+Testing Accuracy:          95.12%
+Total Epochs:              30
+Average Epoch Time:        12.99 sec
+Total Training Time:       6.51 minutes
+
+--- Model Complexity ---
+Total Parameters:          4,012,672
+Trainable Parameters:      4,012,672
+Model Size on Disk:        15.59 MB
+
+--- Inference Speed ---
+Latency:                   3.20 ms/image
+Throughput:                312.3 FPS
+
+--- Hyperparameters ---
+Learning Rate:             5e-05
+Weight Decay:              0.0005
+Dropout Rate:              0.5
+Batch Size:                32
+Optimizer:                 Adam
+LR Scheduler:              CosineAnnealingLR
+Loss Function:             CrossEntropyLoss (label_smoothing=0.1)

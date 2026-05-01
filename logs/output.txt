@@ -1,0 +1,39 @@
+Downloading: "https://download.pytorch.org/models/resnet50-11ad3fa6.pth" to /home/vedant31_rai_stu/.cache/torch/hub/checkpoints/resnet50-11ad3fa6.pth
+Current working dir: /home/vedant31_rai_stu/tumor_cnn
+Using device: cuda
+Classes: ['glioma', 'meningioma', 'notumor', 'pituitary']
+  0%|          | 0.00/97.8M [00:00<?, ?B/s]  1%|▏         | 1.38M/97.8M [00:00<00:07, 14.3MB/s] 10%|▉         | 9.38M/97.8M [00:00<00:01, 54.7MB/s] 18%|█▊        | 17.4M/97.8M [00:00<00:01, 67.5MB/s] 26%|██▌       | 25.5M/97.8M [00:00<00:01, 74.4MB/s] 34%|███▍      | 33.6M/97.8M [00:00<00:00, 78.0MB/s] 43%|████▎     | 41.8M/97.8M [00:00<00:00, 80.1MB/s] 51%|█████     | 49.9M/97.8M [00:00<00:00, 81.6MB/s] 59%|█████▉    | 58.0M/97.8M [00:00<00:00, 82.5MB/s] 68%|██████▊   | 66.1M/97.8M [00:00<00:00, 83.2MB/s] 76%|███████▌  | 74.4M/97.8M [00:01<00:00, 83.9MB/s] 84%|████████▍ | 82.5M/97.8M [00:01<00:00, 84.3MB/s] 93%|█████████▎| 90.6M/97.8M [00:01<00:00, 84.4MB/s]100%|██████████| 97.8M/97.8M [00:01<00:00, 78.8MB/s]
+Epoch 1/10 | Loss: 59.1348 | Train Acc: 89.36%
+Validation Accuracy: 87.38%
+
+Epoch 2/10 | Loss: 13.3611 | Train Acc: 97.57%
+Validation Accuracy: 94.19%
+
+Epoch 3/10 | Loss: 5.6904 | Train Acc: 99.07%
+Validation Accuracy: 94.06%
+
+Epoch 4/10 | Loss: 3.1439 | Train Acc: 99.43%
+Validation Accuracy: 93.75%
+
+Epoch 5/10 | Loss: 2.4701 | Train Acc: 99.55%
+Validation Accuracy: 93.38%
+
+Epoch 6/10 | Loss: 2.7313 | Train Acc: 99.55%
+Validation Accuracy: 94.50%
+
+Epoch 7/10 | Loss: 2.9520 | Train Acc: 99.48%
+Validation Accuracy: 93.75%
+
+Epoch 8/10 | Loss: 2.0040 | Train Acc: 99.77%
+Validation Accuracy: 94.12%
+
+Epoch 9/10 | Loss: 2.1804 | Train Acc: 99.57%
+Validation Accuracy: 94.25%
+
+Epoch 10/10 | Loss: 2.0454 | Train Acc: 99.64%
+Validation Accuracy: 93.81%
+
+
+Total Training Time: 7.18 minutes
+
+✅ Training Completed Successfully

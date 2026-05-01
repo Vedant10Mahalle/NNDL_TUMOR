@@ -1,0 +1,25 @@
+Model: resnet
+Final Train Accuracy:      96.86%
+Best Validation Accuracy:  96.43%
+Testing Accuracy:          92.12%
+Total Epochs:              30
+Average Epoch Time:        12.90 sec
+Total Training Time:       6.49 minutes
+
+--- Model Complexity ---
+Total Parameters:          23,516,228
+Trainable Parameters:      23,516,228
+Model Size on Disk:        90.00 MB
+
+--- Inference Speed ---
+Latency:                   2.48 ms/image
+Throughput:                403.9 FPS
+
+--- Hyperparameters ---
+Learning Rate:             1e-05
+Weight Decay:              0.0005
+Dropout Rate:              0.5
+Batch Size:                32
+Optimizer:                 Adam
+LR Scheduler:              CosineAnnealingLR
+Loss Function:             CrossEntropyLoss (label_smoothing=0.1)
