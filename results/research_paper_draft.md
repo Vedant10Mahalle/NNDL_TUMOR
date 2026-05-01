@@ -153,17 +153,17 @@ To excel in any CNN-based deep learning project, it is essential to understand t
 
 ---
 
-## 8. Special Knowledge Section for Academic Projects
+## 8. Essential Deep Learning Techniques Used
 
-This section serves as a handy guide to the critical hyperparameters and mechanisms that govern deep learning training.
+This section lists the exact technical hyperparameters and mechanisms utilized in our training pipeline (`train.py`):
 
-- **Batch Size**: The number of training samples used per step. Small sizes act as regularizers due to gradient noise, whereas large sizes improve speed but can cause the model to get stuck in local minima.
-- **Learning Rate (LR)**: Determines how big of a step the optimizer takes toward the minimum loss. High rates cause divergence; low rates result in slow or no learning. We start at $5\times10^{-5}$ and decay to $1\times10^{-7}$.
-- **Weight Decay ($L_2$ Regularization)**: Penalizes larger weights to prevent the model from over-indexing on training noise, helping narrow the test accuracy gap.
-- **Dropout**: Drops a random set of nodes/channels (e.g., 20%-50%) during training to prevent the network from relying heavily on single nodes.
-- **Label Smoothing**: Prevents overconfidence by making target vectors "soft" (e.g., `[0.95, 0.016, 0.016, 0.016]`) instead of rigid (`[1, 0, 0, 0]`).
-- **Gradient Clipping**: Clamps exploding gradients to a maximum value (e.g., $1.0$) to avoid unstable training.
-- **Early Stopping**: Halts the training process when the validation metrics stop improving for a fixed number of epochs, which saves compute and prevents overfitting.
+- **Batch Size**
+- **Learning Rate & Cosine Annealing**
+- **Weight Decay ($L_2$ Regularization)**
+- **Dropout**
+- **Label Smoothing**
+- **Gradient Clipping**
+- **Early Stopping**
 
 ---
 
