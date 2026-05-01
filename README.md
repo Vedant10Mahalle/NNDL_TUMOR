@@ -1,21 +1,10 @@
-# NNDL_TUMOR: Advanced Deep Learning & Explainable AI for Multi-Class Brain Tumor Classification
+# NNDL_TUMOR: Brain Tumor Classification & Explainable AI
 
-A highly optimized, production-ready, and explainable deep learning pipeline for the clinical diagnostic classification of magnetic resonance imaging (MRI) brain scans into four classes: **Glioma, Meningioma, Pituitary, and No Tumor**. This repository evaluates ResNet50, InceptionV3, MobileNetV2, EfficientNet-B0, and a Custom 5-Block CNN under matching conditions to analyze computational complexity versus classification efficacy.
+This repository contains a high-performance deep learning pipeline for multi-class brain tumor classification from MRI images into four classes: `glioma`, `meningioma`, `notumor`, and `pituitary`.
 
----
+## 📊 1. Performance Benchmark Results
 
-## 🔬 1. Research Project Abstract
-Automated, early detection of brain tumors from MRI scans is crucial for improving survival rates. In this comprehensive comparative analysis, we evaluate the real-world trade-offs between parameters, inference speed, disk footprint, and classification accuracy across five deep convolutional networks. Every model was trained over a fixed schedule of 30 epochs with identical multi-class configurations. To resolve data-level overfitting, we integrated an optimized training framework with **Cosine Annealing, Label Smoothing, and Gaussian Blur / Random Erasing transformations**. 
-
-Our experimental outcomes demonstrate that **MobileNetV2** achieved the highest test accuracy of **95.31%** while possessing an incredibly compact footprint (2.23M parameters, 8.74 MB), outperforming heavier architectures like ResNet50 (92.12%) and InceptionV3 (94.19%). We leveraged Gradient-weighted Class Activation Mapping (**Grad-CAM**) to map internal convolutional features over structural MRI regions, validating that lightweight networks exhibit highly localized, biologically sound features.
-
----
-
-## 📊 2. Master Performance Comparison
-
-The final benchmarks illustrate the trade-off between model parameters, inference latency, and accuracy:
-
-| Model Architecture | Test Accuracy | Total Parameters | Model Size | Latency | Inference Speed (FPS) |
+| Model Architecture | Test Accuracy | Parameters | Model Size | Latency | Inference Speed (FPS) |
 |---|---|---|---|---|---|
 | **MobileNetV2** | **95.31%** 🏆 | **2.23 Million** | **8.74 MB** | **2.11 ms** | **474.1 FPS** |
 | **EfficientNet-B0** | 95.12% | 4.01 Million | 15.59 MB | 3.20 ms | 312.3 FPS |
@@ -25,80 +14,46 @@ The final benchmarks illustrate the trade-off between model parameters, inferenc
 
 ---
 
-## 🛠 3. Advanced Anti-Overfitting Stack
+## 🛠️ 2. Key Regularization & Training Mechanics
 
-Small datasets in clinical imaging frequently trigger overfitting, where the model achieves ~100% training accuracy but falls short on the independent test set. We implemented an end-to-end regularization stack to strictly control parameter tuning:
+To narrow the accuracy gap between training and validation, the following hyperparameter settings were used:
 
-### A. Dynamic Learning Rate Scheduling & Optimization
-Instead of a static learning rate, we utilize **Cosine Annealing Learning Rate Decay** starting at $5\times10^{-5}$ down to $1\times10^{-7}$. This prevents the model from aggressive early memorization and ensures it converges slowly and accurately.
-
-### B. Label Smoothing Loss
-By replacing traditional `CrossEntropyLoss()` with **Label Smoothing (0.05)**, we force the model to not predict absolute probabilities (e.g., 99.9% certainty). This directly limits the train-test accuracy gap.
-
-### C. Enhanced Data Augmentation
-To improve structural and environmental robustness, the pipeline subjects training images to random horizontal and vertical flips, rotations, color jittering, Gaussian Blur, and **Random Erasing (p=0.3)** to simulate variable MRI imaging scenarios.
+- **Optimizer**: Adam with model-specific learning rates.
+- **Learning Rate Schedule**: Cosine Annealing decay down to $1\times10^{-7}$.
+- **Regularization**: Label Smoothing (0.05), weight decay, and dropout are applied to control overfitting.
+- **Data Augmentation**: Flips, rotations, Gaussian Blur, and random erasing to improve robustness.
 
 ---
 
-## 🗺️ 4. Explainable AI: Folder-Wise Grad-CAM Visualizations
-
-To validate that our models base their diagnostic predictions on correct visual features rather than background artifacts, we conducted Gradient-weighted Class Activation Mapping (Grad-CAM) analysis on testing images folder-by-folder.
-
-### A. Glioma Tissue Activation
-Glioma tumors generally exhibit diffuse borders. Grad-CAM shows how different models locate this specific type of lesion:
-
-| ResNet50 | InceptionV3 | MobileNetV2 | EfficientNet-B0 |
-|---|---|---|---|
-| ![Glioma ResNet](results/gradcam/glioma_resnet.png) | ![Glioma Inception](results/gradcam/glioma_inception.png) | ![Glioma MobileNet](results/gradcam/glioma_mobilenet.png) | ![Glioma EfficientNet](results/gradcam/glioma_efficientnet.png) |
-
-### B. Meningioma Tissue Activation
-Meningiomas are typically dural-based and exhibit distinct, localized borders:
-
-| ResNet50 | InceptionV3 | MobileNetV2 | EfficientNet-B0 |
-|---|---|---|---|
-| ![Meningioma ResNet](results/gradcam/meningioma_resnet.png) | ![Meningioma Inception](results/gradcam/meningioma_inception.png) | ![Meningioma MobileNet](results/gradcam/meningioma_mobilenet.png) | ![Meningioma EfficientNet](results/gradcam/meningioma_efficientnet.png) |
-
----
-
-## 📈 5. Training Curves & Convergence
-
-### ResNet50 Optimization Metrics
-
-#### Accuracy and Loss Progression:
-![ResNet Accuracy](results/resnet/accuracy.png)
-![ResNet Loss](results/resnet/loss.png)
-
-#### Confusion Matrix:
-![ResNet Confusion Matrix](results/resnet/confusion_matrix.png)
-
----
-
-## 💻 6. Project Architecture & Getting Started
+## 📂 3. Repository Structure
 
 ```
 .
-├── train.py                  # Core PyTorch training script with optimization
-├── run_all.sh                # Sequential training automation script
-├── gradcam_folder.py         # Automates Grad-CAM visual heatmaps folder-wise
-├── generate_summary_table.py # Compiles exact test accuracy and metrics
-├── results/                  # Training curves, confusion matrices, and reports
-│   └── gradcam/              # Explanatory visual heatmaps for each category
-└── data/                     # Source MRI images (ignored by git)
+├── train.py                  # Core training engine
+├── run_all.sh                # Automation script for multi-model runs
+├── gradcam.py                # Visualizes individual activations using Grad-CAM
+├── gradcam_folder.py         # Generates folder-wise Grad-CAM heatmaps
+├── generate_summary_table.py # Compiles Markdown and LaTeX summary tables
+├── results/                  # Accuracy curves, confusion matrices, and metrics
+└── data/                     # Training & testing MRI scans (ignored by git)
 ```
 
-### Reproduce the Results Locally
-To install the dependencies, execute the full training loop, and generate tables:
+---
+
+## 🚀 4. Usage Instructions
+
+To replicate results, configure your environment and run the following commands sequentially:
 
 ```bash
-# 1. Install prerequisites
+# 1. Install required packages
 pip install torch torchvision matplotlib seaborn scikit-learn opencv-python grad-cam
 
-# 2. Run the multi-model optimization schedule
+# 2. Run the training automation script
 bash run_all.sh
 
-# 3. Generate the summary comparisons and LaTeX table
+# 3. Print benchmarking and performance metrics
 python generate_summary_table.py
 
-# 4. Create the Grad-CAM visualizations
+# 4. Generate the explainable AI heatmaps
 python gradcam_folder.py
 ```
